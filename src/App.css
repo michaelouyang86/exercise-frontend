@@ -1,0 +1,112 @@
+/* App.css - Dark Elegant Theme */
+
+:root {
+  --background-color: #2f353b; /* Dark background */
+  --text-color: #e4e8ec; /* Light gray text for readability */
+  --text-heading: #f0f4f7; /* Brighter text for headings */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Styling for heading tags (h1, h2, etc.) */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-heading); /* Brighter text for headings */
+  font-weight: 700;
+  margin: 0.5em 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Adds depth to headings */
+}
+
+h1 {
+  font-size: 2.5rem; /* Larger size for h1 */
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem; /* Slightly smaller for h2 */
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.75rem; /* Standard size for h3 */
+  line-height: 1.4;
+  color: #ff9f43;
+}
+
+h4 {
+  font-size: 1.5rem; /* Slightly smaller for h4 */
+  line-height: 1.5;
+  color: #ff9f43;
+}
+
+h5 {
+  font-size: 1.4rem; /* Smaller for h5 */
+  line-height: 1.6;
+}
+
+h6 {
+  font-size: 1.25rem; /* Smaller for h6 */
+  line-height: 1.6;
+}
+
+/* Styling for paragraphs (p) */
+p {
+  color: var(--text-color); /* Light gray for readability */
+  font-size: 1rem; /* Regular size for body text */
+  line-height: 1.6;
+  margin: 0.75em 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Styling for links */
+.links {
+  display: flex;
+  flex-direction: column; /* Change to vertical layout */
+  gap: 1.5rem; /* Vertical gap between links */
+  justify-content: center; /* Center the links horizontally */
+  margin-top: 2rem;
+  align-items: center; /* Center the links horizontally */
+}
+
+.link {
+  display: block;
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: #f8f9fa;
+  color: #2c3e50; /* Default text color */
+  border: 1px solid #ced4da;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  font-size: 1.1rem; /* Slightly larger font size */
+}
+
+.link:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  color: #ff6f61; /* Color change on hover for more vibrancy */
+  transform: translateY(-2px); /* Smooth movement when hovered */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+  text-decoration: underline; /* Underline effect on hover */
+}
+
+/* Optional: Adding a subtle transition effect for smoother hover */
+.link:hover {
+  transition: transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
