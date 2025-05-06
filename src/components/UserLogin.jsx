@@ -18,7 +18,7 @@ function UserLogin() {
     localStorage.removeItem('token');
 
     try {
-      const response = await exerciseApiClient.post('/authentication/users', {
+      const response = await exerciseApiClient.post('/v1/authentication/users', {
         phone,
         password,
       });
@@ -43,7 +43,7 @@ function UserLogin() {
   return (
     <div>
       <form onSubmit={handleLogin}>
-        <h2>學生 & 老師</h2>
+        <h2>學生 & 教練</h2>
         <div>
           <label>電話: </label>
           <input

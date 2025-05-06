@@ -1,86 +1,113 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getISOWeek } from 'date-fns';
 
 import exerciseApiClient from '@/api/exerciseApiClient';
-import axios from 'axios';
+import styles from './css/StudentClassSchedule.module.css';
 
 function StudentClassSchedule() {
-  const [loading, setLoading] = useState(false);
   const [teachers, setTeachers] = useState([]);
+  const [selectedIsoWeek, setSelectedIsoWeek] = useState(null);
   const [selectedTeacherId, setSelectedTeacherId] = useState(null);
   const [teacherAvailabilities, setTeacherAvailabilities] = useState([]);
-  
-  const [selectedAvailability, setSelectedAvailability] = useState(null);
-  const [isoWeek, setIsoWeek] = useState('2025-W16'); // default week for example
-
-  const token = localStorage.getItem('token'); // Example: get auth token
+  const [selectedClassDate, setSelectedClassDate] = useState(null);
+  const [selectedStartTime, setSelectedStartTime] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchTeachers();
+    fetchAndSetTeachers();
+    setIsoWeekToNextWeek();
   }, []);
 
-  const fetchTeachers = async () => {
+  const fetchAndSetTeachers = async () => {
     try {
-      setLoading(true);
-      const response = await exerciseApiClient.get('/student/teachers');
+      const response = await exerciseApiClient.get('/v1/student/teachers');
       setTeachers(response.data);
     } catch (error) {
       console.error('Failed to fetch teachers', error);
-    } finally {
-      setLoading(false);
     }
   };
 
-  const fetchTeacherAvailabilities = async (teacherId) => {
-    try {
-      setLoading(true);
-      const response = await exerciseApiClient.get(`/student/teachers/${teacherId}/availabilities?isoWeek=2025-W16`);
-      setTeacherAvailabilities(response.data);
-    } catch (error) {
-      console.error('Failed to fetch availabilities', error);
-    } finally {
-      setLoading(false);
+  const setIsoWeekToNextWeek = () => {
+    const today = new Date();
+    const nextWeekDate = new Date(today);
+    // Adds 7 days to the current date
+    nextWeekDate.setDate(today.getDate() + 7);
+
+    const year = nextWeekDate.getFullYear();
+    const isoWeek = getISOWeek(nextWeekDate);
+    const nextIsoWeek = `${year}-W${isoWeek.toString().padStart(2, '0')}`;
+    setSelectedIsoWeek(nextIsoWeek);
+  };
+
+  const handleTeacherChange = (event) => {
+    setSelectedClassDate(null);
+    setSelectedStartTime(null);
+
+    const teacherId = event.target.value;
+    setSelectedTeacherId(teacherId);
+    fetchAndSetTeacherAvailabilities(teacherId, selectedIsoWeek);
+  };
+
+  const handleIsoWeekChange = (event) => {
+    setSelectedClassDate(null);
+    setSelectedStartTime(null);
+
+    const isoWeek = event.target.value;
+    setSelectedIsoWeek(isoWeek);
+    fetchAndSetTeacherAvailabilities(selectedTeacherId, isoWeek);
+  };
+
+  const fetchAndSetTeacherAvailabilities = async (teacherId, isoWeek) => {
+    if (teacherId && isoWeek) {
+      try {
+        const response = await exerciseApiClient.get(`/v1/student/teachers/${teacherId}/availabilities?isoWeek=${isoWeek}`);
+        const filteredResponse = response.data.filter((availability) => availability.timeslots.length > 0);
+        setTeacherAvailabilities(filteredResponse);
+      } catch (error) {
+        console.error('Failed to fetch availabilities', error);
+      }
+    } else {
+      setTeacherAvailabilities([]);
     }
+  };
+
+  const handleTimeslotChange = (date, timeslot) => {
+    setSelectedClassDate(date);
+    setSelectedStartTime(timeslot);
   };
 
   const handleScheduleClass = async () => {
-    if (!selectedTeacherId || !selectedAvailability) {
-      alert('Please select a teacher and availability first.');
-      return;
-    }
-
     try {
-      setLoading(true);
       const requestBody = {
         teacherId: selectedTeacherId,
-        timeslot: selectedAvailability, // Adjust field name depending on your API
+        classDate: selectedClassDate,
+        startTime: selectedStartTime
       };
-
-      await axios.post('/student/schedules', requestBody, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      alert('Class scheduled successfully!');
+      await exerciseApiClient.post('/v1/student/schedules', requestBody);
+    
+      const selectedTeacherName = teachers.find(teacher => teacher.id === Number(selectedTeacherId)).name;
+      alert(`預約成功！\n\n教練: ${selectedTeacherName}\n日期: ${selectedClassDate}\n時間: ${selectedStartTime.slice(0, 5)}`);
+      navigate('/student/class/management');
     } catch (error) {
       console.error('Failed to schedule class', error);
-    } finally {
-      setLoading(false);
+      alert(`預約失敗！\n\n請重新預約`);
     }
   };
 
   return (
     <div>
-      <h3>預約課程</h3><hr />
-
-      {loading && <p>Loading...</p>}
-
+      <div className="header-banner">
+        <h3 className="text-orange">預約課程</h3>
+        <button onClick={() => navigate('/student/dashboard')}>
+          回主頁
+        </button>
+      </div>
+      <hr />
       <div>
-        <h5>選擇老師</h5>
-        <select onChange={(event) => {
-          const teacherId = event.target.value;
-          setSelectedTeacherId(teacherId);
-          fetchTeacherAvailabilities(teacherId);
-        }}>
-          <option value="">請選擇老師</option>
+        <h5>選擇教練</h5>
+        <select onChange={handleTeacherChange}>
+          <option value="">請選擇教練</option>
           {teachers.map((teacher) => (
             <option key={teacher.id} value={teacher.id}>
               {teacher.name}
@@ -89,26 +116,56 @@ function StudentClassSchedule() {
         </select>
       </div>
 
-      {teacherAvailabilities.length > 0 && (
-        <div style={{ marginTop: '1.5rem' }}>
-          <h5>選擇可預約時間</h5>
-          <select onChange={(e) => setSelectedAvailability(e.target.value)}>
-            <option value="">請選擇時間</option>
-            {teacherAvailabilities.map((slot) => (
-              <option key={slot.id} value={slot.id}>
-                {slot.date} {slot.startTime} - {slot.endTime}
-              </option>
-            ))}
-          </select>
+      {selectedTeacherId && (
+        <div className={styles.selectWeek}>
+          <h5>選擇週次</h5>
+          <input
+            type="week"
+            value={selectedIsoWeek}
+            onChange={handleIsoWeekChange}
+          />
         </div>
       )}
 
-      <button
-        onClick={handleScheduleClass}
-        style={{ marginTop: '2rem', padding: '0.75rem 2rem', fontSize: '1rem' }}
-      >
-        預約
-      </button>
+      {selectedTeacherId && (
+        teacherAvailabilities.length > 0 ? (
+          <div className={styles.selectAvailability}>
+            <h5>選擇可預約時間</h5>
+            {teacherAvailabilities.map((availability) => (
+              <div key={availability.date} className={styles.availabilitySection}>
+                <hr />
+                <strong className="text-orange">
+                  {availability.date} ({availability.dayOfWeek})
+                </strong>
+                <div className={styles.timeslotRadioGroup}>
+                  {availability.timeslots.map((timeslot) => (
+                    <label key={timeslot} className={styles.timeslotButton}>
+                      <input
+                        type="radio"
+                        name="selectedTimeslot"
+                        onChange={() => handleTimeslotChange(availability.date, timeslot)}
+                      />
+                      <span>{timeslot.slice(0, 5)}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className={styles.noAvailability}>暫無可預約時間</div>
+        )
+      )}
+
+      <hr />
+      {selectedClassDate && selectedStartTime && (
+        <button
+          className={styles.scheduleButton}
+          onClick={handleScheduleClass}
+        >
+          預約
+        </button>
+      )}
     </div>
   );
 }

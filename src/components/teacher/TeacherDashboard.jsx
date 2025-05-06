@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function TeacherDashboard() {
   return (
     <div>
-      <h2>老師管理主頁</h2><hr />
+      <h2>教練管理主頁</h2><hr />
       <h4>課程查詢</h4>
       <div className="links">
         <Link to="/teacher/" className="link">

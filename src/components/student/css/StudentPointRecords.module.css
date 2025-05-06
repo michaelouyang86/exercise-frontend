@@ -1,0 +1,21 @@
+.currentPointsBox {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.noteExplanation {
+  font-weight: normal;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+  color: #ccc;
+}
+
+.pointsPositive {
+  color: #ff3333;
+  font-weight: bold;
+}
+
+.pointsNegative {
+  color: #00cc00;
+  font-weight: bold;
+}

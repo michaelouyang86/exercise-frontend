@@ -6,7 +6,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 import StudentDashboard from './components/student/StudentDashboard';
 import StudentClassSchedule from './components/student/StudentClassSchedule';
-import StudentClassManage from './components/student/StudentClassManage';
+import StudentClassManagement from './components/student/StudentClassManagement';
+import StudentPointRecords from './components/student/StudentPointRecords';
 import StudentClassNote from './components/student/StudentClassNote';
 
 import TeacherDashboard from './components/teacher/TeacherDashboard';
@@ -20,7 +21,8 @@ function App() {
     
     { path: '/student/dashboard', element: <ProtectedRoute element={<StudentDashboard />} /> },
     { path: '/student/class/schedule', element: <ProtectedRoute element={<StudentClassSchedule />} /> },
-    { path: '/student/class/manage', element: <ProtectedRoute element={<StudentClassManage />} /> },
+    { path: '/student/class/management', element: <ProtectedRoute element={<StudentClassManagement />} /> },
+    { path: '/student/point/records', element: <ProtectedRoute element={<StudentPointRecords />} /> },
     { path: '/student/class/note', element: <ProtectedRoute element={<StudentClassNote />} /> },
 
     { path: '/teacher/dashboard', element: <ProtectedRoute element={<TeacherDashboard />} /> },

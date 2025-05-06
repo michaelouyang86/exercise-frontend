@@ -1,0 +1,20 @@
+.noSchedules {
+  text-align: center;
+  color: #bbb; /* Light gray color for "no schedules" */
+  font-style: italic;
+  padding: 20px;
+}
+
+.cancelButton {
+  background-color: #e74c3c; /* Red color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.cancelButton:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}

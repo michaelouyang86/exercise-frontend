@@ -1,0 +1,65 @@
+.selectWeek {
+  margin-top: 1.25rem;
+}
+
+.selectAvailability {
+  margin-top: 1.5rem;
+}
+
+.availabilitySection {
+  margin-top: 1.25rem;
+}
+
+.timeslotRadioGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.timeslotButton {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #444;
+  color: #e4e8ec;
+  border-radius: 8px;
+  border: 1px solid #555;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Hide the actual radio input */
+.timeslotButton input[type="radio"] {
+  display: none;
+}
+
+/* Change label when input is checked */
+.timeslotButton:has(input[type="radio"]:checked) {
+  color: #ff9f43;
+  border-color: white;
+}
+
+.timeslotButton:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+.timeslotButton span {
+  font-weight: 500;
+}
+
+.noAvailability {
+  margin-top: 1rem;
+  color: #888;
+  font-style: italic;
+  text-align: center;
+}
+
+.scheduleButton {
+  margin-top: 1rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+}
