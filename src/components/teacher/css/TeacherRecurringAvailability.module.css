@@ -1,0 +1,54 @@
+.dayContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.addButton {
+  padding: 0.45rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #388e3c;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.addButton:hover {
+  background-color: #2e7031;
+}
+
+.recurringAvailabilities {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.recurringAvailabilities li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #3a3a3a;
+  border-radius: 5px;
+}
+
+.deleteButton {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #e74c3c;
+  cursor: pointer;
+  margin-left: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #c0392b;
+}

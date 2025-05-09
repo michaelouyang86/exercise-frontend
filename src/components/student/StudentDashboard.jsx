@@ -13,8 +13,7 @@ function StudentDashboard() {
 
   return (
     <div>
-      <h2 className='text-orange'>學生主頁</h2><hr />
-      {/* 剩餘點數: 10 */}
+      <h2 className="text-orange">學生主頁</h2><hr />
       <div className="links">
         <Link to="/student/class/schedule" className="link">
           預約課程

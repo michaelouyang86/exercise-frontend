@@ -1,0 +1,12 @@
+.timePickerRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.colon {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ccc;
+}

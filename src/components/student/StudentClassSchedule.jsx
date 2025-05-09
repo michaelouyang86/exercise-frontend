@@ -6,13 +6,13 @@ import exerciseApiClient from '@/api/exerciseApiClient';
 import styles from './css/StudentClassSchedule.module.css';
 
 function StudentClassSchedule() {
+  const navigate = useNavigate();
   const [teachers, setTeachers] = useState([]);
   const [selectedIsoWeek, setSelectedIsoWeek] = useState(null);
   const [selectedTeacherId, setSelectedTeacherId] = useState(null);
   const [teacherAvailabilities, setTeacherAvailabilities] = useState([]);
   const [selectedClassDate, setSelectedClassDate] = useState(null);
   const [selectedStartTime, setSelectedStartTime] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchAndSetTeachers();
@@ -22,7 +22,7 @@ function StudentClassSchedule() {
   const fetchAndSetTeachers = async () => {
     try {
       const response = await exerciseApiClient.get('/v1/student/teachers');
-      setTeachers(response.data);
+      setTeachers(response.data.teachers);
     } catch (error) {
       console.error('Failed to fetch teachers', error);
     }
@@ -62,7 +62,7 @@ function StudentClassSchedule() {
     if (teacherId && isoWeek) {
       try {
         const response = await exerciseApiClient.get(`/v1/student/teachers/${teacherId}/availabilities?isoWeek=${isoWeek}`);
-        const filteredResponse = response.data.filter((availability) => availability.timeslots.length > 0);
+        const filteredResponse = response.data.teacherAvailabilities.filter((availability) => availability.timeslots.length > 0);
         setTeacherAvailabilities(filteredResponse);
       } catch (error) {
         console.error('Failed to fetch availabilities', error);

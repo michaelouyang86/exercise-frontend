@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import exerciseApiClient from '@/api/exerciseApiClient';
 import styles from './css/StudentPointRecords.module.css';
 
-function StudentPointRecords() {
+function StudentPointRecord() {
+  const navigate = useNavigate();
   const [currentPoints, setCurrentPoints] = useState(null);
   const [pointsRecords, setPointsRecords] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchAndSetCurrentPoints();
@@ -26,7 +26,7 @@ function StudentPointRecords() {
   const fetchAndSetPointsRecords = async () => {
     try {
       const response = await exerciseApiClient.get('/v1/student/points/records');
-      setPointsRecords(response.data.records);
+      setPointsRecords(response.data.pointsRecords);
     } catch (error) {
       console.error('Failed to fetch points records', error);
     }
@@ -67,8 +67,8 @@ function StudentPointRecords() {
                 <td className={record.adjustedPoints > 0 ? styles.pointsPositive : styles.pointsNegative}>
                   {record.adjustedPoints > 0 ? `+${record.adjustedPoints}` : record.adjustedPoints}
                 </td>
-                <td>{record.reason}</td>
-                <td>{record.pointsAfterAdjustment}</td>
+                <td className="text-white">{record.reason}</td>
+                <td className="text-white text-bold">{record.pointsAfterAdjustment}</td>
               </tr>
             ))}
           </tbody>
@@ -80,4 +80,4 @@ function StudentPointRecords() {
   );
 }
 
-export default StudentPointRecords;
+export default StudentPointRecord;

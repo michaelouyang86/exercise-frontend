@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css'
 
 import UserLogin from './components/UserLogin';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -7,13 +6,16 @@ import ProtectedRoute from './components/ProtectedRoute';
 import StudentDashboard from './components/student/StudentDashboard';
 import StudentClassSchedule from './components/student/StudentClassSchedule';
 import StudentClassManagement from './components/student/StudentClassManagement';
-import StudentPointRecords from './components/student/StudentPointRecords';
+import StudentPointRecord from './components/student/StudentPointRecord';
 import StudentClassNote from './components/student/StudentClassNote';
 
 import TeacherDashboard from './components/teacher/TeacherDashboard';
 import TeacherRecurringAvailability from './components/teacher/TeacherRecurringAvailability';
 import TeacherExceptionAvailability from './components/teacher/TeacherExceptionAvailability';
-import TeacherUnavailableDates from './components/teacher/TeacherUnavailableDates';
+import TeacherUnavailable from './components/teacher/TeacherUnavailable';
+
+// Import global CSS files
+import './App.css';
 
 function App() {
   const routes = [
@@ -22,13 +24,13 @@ function App() {
     { path: '/student/dashboard', element: <ProtectedRoute element={<StudentDashboard />} /> },
     { path: '/student/class/schedule', element: <ProtectedRoute element={<StudentClassSchedule />} /> },
     { path: '/student/class/management', element: <ProtectedRoute element={<StudentClassManagement />} /> },
-    { path: '/student/point/records', element: <ProtectedRoute element={<StudentPointRecords />} /> },
+    { path: '/student/point/records', element: <ProtectedRoute element={<StudentPointRecord />} /> },
     { path: '/student/class/note', element: <ProtectedRoute element={<StudentClassNote />} /> },
 
     { path: '/teacher/dashboard', element: <ProtectedRoute element={<TeacherDashboard />} /> },
-    { path: '/teacher/availability/recurring', element: <ProtectedRoute element={<TeacherRecurringAvailability />} /> },
-    { path: '/teacher/availability/exceptions', element: <ProtectedRoute element={<TeacherExceptionAvailability />} /> },
-    { path: '/teacher/unavailable-dates', element: <ProtectedRoute element={<TeacherUnavailableDates />} /> }
+    { path: '/teacher/availabilities/recurring', element: <ProtectedRoute element={<TeacherRecurringAvailability />} /> },
+    { path: '/teacher/availabilities/exception', element: <ProtectedRoute element={<TeacherExceptionAvailability />} /> },
+    { path: '/teacher/availabilities/unavailable', element: <ProtectedRoute element={<TeacherUnavailable />} /> }
   ];
 
   return (

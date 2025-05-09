@@ -5,21 +5,21 @@ import exerciseApiClient from '@/api/exerciseApiClient';
 import styles from './css/StudentClassManagement.module.css';
 
 function StudentClassManagement() {
-  const [scheduledClasses, setScheduledClasses] = useState([]);
+  const [upcomingScheduledClasses, setUpcomingScheduledClasses] = useState([]);
   const [showPastClasses, setShowPastClasses] = useState(false);
   const [pastScheduledClasses, setPastScheduledClasses] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchAndSetScheduledClasses();
+    fetchAndSetUpcomingScheduledClasses();
   }, []);
 
-  const fetchAndSetScheduledClasses = async () => {
+  const fetchAndSetUpcomingScheduledClasses = async () => {
     try {
-      const response = await exerciseApiClient.get('/v1/student/schedules?isPast=false');
-      setScheduledClasses(response.data);
+      const response = await exerciseApiClient.get('/v1/student/schedules/upcoming');
+      setUpcomingScheduledClasses(response.data.scheduledClasses);
     } catch (error) {
-      console.error('Failed to fetch schedules', error);
+      console.error('Failed to fetch upcoming schedules', error);
     }
   };
 
@@ -28,7 +28,7 @@ function StudentClassManagement() {
     if (confirmed) {
       try {
         await exerciseApiClient.delete(`/v1/student/schedules/${scheduleId}`);
-        fetchAndSetScheduledClasses();
+        fetchAndSetUpcomingScheduledClasses();
       } catch (error) {
         console.error('Failed to cancel schedule', error);
       }
@@ -42,8 +42,8 @@ function StudentClassManagement() {
 
   const fetchAndSetPastScheduledClasses = async () => {
     try {
-      const response = await exerciseApiClient.get('/v1/student/schedules?isPast=true');
-      setPastScheduledClasses(response.data);
+      const response = await exerciseApiClient.get('/v1/student/schedules/past');
+      setPastScheduledClasses(response.data.scheduledClasses);
     } catch (error) {
       console.error('Failed to fetch past schedules', error);
     }
@@ -68,12 +68,12 @@ function StudentClassManagement() {
           </tr>
         </thead>
         <tbody>
-          {scheduledClasses.length > 0 ? (
-            scheduledClasses.map((scheduledClass) => (
+          {upcomingScheduledClasses.length > 0 ? (
+            upcomingScheduledClasses.map((scheduledClass) => (
               <tr key={scheduledClass.id}>
-                <td>{scheduledClass.teacherName}</td>
-                <td>{scheduledClass.classDate}</td>
-                <td>{scheduledClass.startTime.slice(0, 5)}</td>
+                <td className="text-white">{scheduledClass.teacherName}</td>
+                <td className="text-white">{scheduledClass.classDate}</td>
+                <td className="text-white">{scheduledClass.startTime.slice(0, 5)}</td>
                 <td>
                   <button
                     className={styles.cancelButton}
@@ -114,9 +114,9 @@ function StudentClassManagement() {
             {pastScheduledClasses.length > 0 ? (
               pastScheduledClasses.map((pastScheduledClass) => (
                 <tr key={pastScheduledClass.id}>
-                  <td>{pastScheduledClass.teacherName}</td>
-                  <td>{pastScheduledClass.classDate}</td>
-                  <td>{pastScheduledClass.startTime.slice(0, 5)}</td>
+                  <td className="text-white">{pastScheduledClass.teacherName}</td>
+                  <td className="text-white">{pastScheduledClass.classDate}</td>
+                  <td className="text-white">{pastScheduledClass.startTime.slice(0, 5)}</td>
                 </tr>
               ))
             ) : (
