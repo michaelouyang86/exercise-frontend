@@ -1,10 +1,18 @@
-.dayContainer {
+.dateContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 1rem;
-  margin-bottom: 0.4rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.dateInput {
+  margin-top: 4px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
 }
 
 .addButton {
@@ -23,13 +31,13 @@
   background-color: #2e7031;
 }
 
-.recurringAvailabilities {
+.exceptionAvailabilities {
   list-style: none;
   padding: 0;
   margin: 1rem 0;
 }
 
-.recurringAvailabilities li {
+.exceptionAvailabilities li {
   display: flex;
   justify-content: space-between;
   align-items: center;

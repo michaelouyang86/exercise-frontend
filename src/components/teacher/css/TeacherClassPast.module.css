@@ -1,0 +1,20 @@
+.dateFilterContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dateFilterLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.dateInput {
+  margin-top: 4px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}

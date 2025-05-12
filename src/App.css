@@ -69,6 +69,7 @@ p {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  margin-bottom: 20px;
   background-color: #222; /* Dark table background */
   color: #e4e8ec; /* Light text color */
 }
@@ -106,7 +107,7 @@ p {
   flex-direction: column; /* Change to vertical layout */
   gap: 1.5rem; /* Vertical gap between links */
   justify-content: center; /* Center the links horizontally */
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   align-items: center; /* Center the links horizontally */
 }
 

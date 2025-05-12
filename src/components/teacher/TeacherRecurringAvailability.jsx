@@ -51,11 +51,11 @@ function TeacherRecurringAvailability() {
     }
   };
 
-  const handleDelete = async (id) => {
-    const confirmed = window.confirm('確定要取消這個循環設定嗎？');
+  const handleDelete = async (recurringId) => {
+    const confirmed = window.confirm('確定要刪除此循環設定嗎？');
     if (confirmed) {
       try {
-        await exerciseApiClient.delete(`/v1/teacher/availabilities/recurring/${id}`);
+        await exerciseApiClient.delete(`/v1/teacher/availabilities/recurring/${recurringId}`);
         fetchAndSetRecurringAvailabilities();
       } catch (error) {
         console.error('Error deleting recurring availability:', error);

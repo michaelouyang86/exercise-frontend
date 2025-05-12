@@ -16,11 +16,11 @@ function TeacherDashboard() {
       <h3>教練主頁</h3><hr />
       <h4 className="text-orange">課程查詢</h4>
       <div className="links">
-        <Link to="/teacher/" className="link">
-          當日課程
+        <Link to="/teacher/class/upcoming" className="link">
+          即將上課
         </Link>
-        <Link to="/teacher/" className="link">
-          自訂區間
+        <Link to="/teacher/class/past" className="link">
+          完課紀錄
         </Link>
       </div><br /><hr />
 

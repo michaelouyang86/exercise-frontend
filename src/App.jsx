@@ -10,6 +10,8 @@ import StudentPointRecord from './components/student/StudentPointRecord';
 import StudentClassNote from './components/student/StudentClassNote';
 
 import TeacherDashboard from './components/teacher/TeacherDashboard';
+import TeacherClassUpcoming from './components/teacher/TeacherClassUpcoming';
+import TeacherClassPast from './components/teacher/TeacherClassPast';
 import TeacherRecurringAvailability from './components/teacher/TeacherRecurringAvailability';
 import TeacherExceptionAvailability from './components/teacher/TeacherExceptionAvailability';
 import TeacherUnavailable from './components/teacher/TeacherUnavailable';
@@ -28,6 +30,8 @@ function App() {
     { path: '/student/class/note', element: <ProtectedRoute element={<StudentClassNote />} /> },
 
     { path: '/teacher/dashboard', element: <ProtectedRoute element={<TeacherDashboard />} /> },
+    { path: '/teacher/class/upcoming', element: <ProtectedRoute element={<TeacherClassUpcoming />} /> },
+    { path: '/teacher/class/past', element: <ProtectedRoute element={<TeacherClassPast />} /> },
     { path: '/teacher/availabilities/recurring', element: <ProtectedRoute element={<TeacherRecurringAvailability />} /> },
     { path: '/teacher/availabilities/exception', element: <ProtectedRoute element={<TeacherExceptionAvailability />} /> },
     { path: '/teacher/availabilities/unavailable', element: <ProtectedRoute element={<TeacherUnavailable />} /> }

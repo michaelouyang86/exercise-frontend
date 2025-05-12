@@ -70,6 +70,47 @@ function UserLogin() {
 
         {message && <p>{message}</p>}
       </form>
+
+      <div>
+        <br />測試帳號<br /><br />
+        有測試資料:
+        <button 
+          type="button" 
+          onClick={() => {
+            setPhone('0911111111');
+            setPassword('111');
+          }}
+          style={{ marginLeft: '10px', marginRight: '12px' }}>
+          帥哥教練
+        </button>
+        <button 
+          type="button" 
+          onClick={() => {
+            setPhone('0933333333');
+            setPassword('333');
+          }}>
+          胖子學生
+        </button><br /><br />
+
+        無測試資料:
+        <button 
+          type="button" 
+          onClick={() => {
+            setPhone('0922222222');
+            setPassword('222');
+          }}
+          style={{ marginLeft: '10px', marginRight: '12px' }}>
+          美女教練
+        </button>
+        <button 
+          type="button" 
+          onClick={() => {
+            setPhone('0944444444');
+            setPassword('444');
+          }}>
+          瘦子學生
+        </button>
+      </div>
     </div>
   );
 }

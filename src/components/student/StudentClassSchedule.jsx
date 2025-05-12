@@ -102,8 +102,8 @@ function StudentClassSchedule() {
         <button onClick={() => navigate('/student/dashboard')}>
           回主頁
         </button>
-      </div>
-      <hr />
+      </div><hr />
+      
       <div>
         <h5>選擇教練</h5>
         <select onChange={handleTeacherChange}>
