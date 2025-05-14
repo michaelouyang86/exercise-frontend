@@ -1,0 +1,6 @@
+.env
+.git
+.gitignore
+.vite
+node_modules
+dist

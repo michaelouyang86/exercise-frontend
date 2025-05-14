@@ -73,7 +73,7 @@ function UserLogin() {
 
       <div>
         <br />測試帳號<br /><br />
-        有測試資料:
+        教練:
         <button 
           type="button" 
           onClick={() => {
@@ -86,21 +86,21 @@ function UserLogin() {
         <button 
           type="button" 
           onClick={() => {
-            setPhone('0933333333');
-            setPassword('333');
+            setPhone('0922222222');
+            setPassword('222');
           }}>
-          胖子學生
+          美女教練
         </button><br /><br />
 
-        無測試資料:
+        學生:
         <button 
           type="button" 
           onClick={() => {
-            setPhone('0922222222');
-            setPassword('222');
+            setPhone('0933333333');
+            setPassword('333');
           }}
           style={{ marginLeft: '10px', marginRight: '12px' }}>
-          美女教練
+          胖子學生
         </button>
         <button 
           type="button" 
