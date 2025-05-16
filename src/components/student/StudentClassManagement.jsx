@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { format, startOfMonth, subMonths, subDays } from 'date-fns';
 
-import exerciseApiClient from '@/api/exerciseApiClient';
+import { getExerciseApiClient } from '@/api/exerciseApiClient';
 import styles from './css/StudentClassManagement.module.css';
 
 function StudentClassManagement() {
   const navigate = useNavigate();
+  const exerciseApiClient = getExerciseApiClient();
   // For upcoming classes
   const [upcomingClasses, setUpcomingClasses] = useState([]);
   // For past classes

@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { format, startOfMonth, subDays } from 'date-fns';
 
-import exerciseApiClient from '@/api/exerciseApiClient';
+import { getExerciseApiClient } from '@/api/exerciseApiClient';
 import styles from './css/TeacherClassPast.module.css';
 
 function TeacherClassPast() {
   const navigate = useNavigate();
+  const exerciseApiClient = getExerciseApiClient();
   // For past classes
   const [pastStartDate, setPastStartDate] = useState(null);
   const [pastEndDate, setPastEndDate] = useState(null);

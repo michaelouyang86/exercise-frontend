@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import exerciseApiClient from '@/api/exerciseApiClient';
+import { getExerciseApiClient } from '@/api/exerciseApiClient';
 
 function UserLogin() {
+  const navigate = useNavigate();
+  const exerciseApiClient = getExerciseApiClient();
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();

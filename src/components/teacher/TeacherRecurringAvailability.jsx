@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import WorkingHoursPicker from '@/components/common/WorkingHoursPicker';
-import exerciseApiClient from '@/api/exerciseApiClient';
+import { getExerciseApiClient } from '@/api/exerciseApiClient';
 import styles from './css/TeacherRecurringAvailability.module.css';
 
 function TeacherRecurringAvailability() {
   const navigate = useNavigate();
+  const exerciseApiClient = getExerciseApiClient();
   const [recurringAvailabilities, setRecurringAvailabilities] = useState([]);
   const [dayOfWeek, setDayOfWeek] = useState('');
   const [workingTime, setWorkingTime] = useState({

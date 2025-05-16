@@ -1,5 +1,9 @@
-# To build the Docker image, run the following command in the terminal:
-# docker build --build-arg VITE_EXERCISE_API_URL=http://localhost:8080 -t exercise-frontend:latest .
+# To build the Docker image, use the following command:
+# docker build -t exercise-frontend:latest .
+
+# To run the Docker container, use the following command:
+# Replace ${EXERCISE_API_URL} with the actual backend URL
+# docker run -p 80:80 -e EXERCISE_API_URL="${EXERCISE_API_URL}" exercise-frontend:latest
 
 # 1. Build the app
 
@@ -18,21 +22,26 @@ RUN npm install
 # Copy the rest of the code, excluding those in .dockerignore
 COPY . .
 
-# Set environment variables for the build
-ARG VITE_EXERCISE_API_URL
-ENV VITE_EXERCISE_API_URL=$VITE_EXERCISE_API_URL
-
 # Build the app, this will create a dist folder with the production build
 RUN npm run build
 
 # 2. Create the production image
 FROM nginx:alpine
 
+# Set the working directory
+WORKDIR /app
+
 # Copy the built app from the builder stage to the nginx directory
 COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Copy the custom entrypoint script
+COPY entrypoint.sh .
+
+# MAKE the entrypoint script executable
+RUN chmod +x entrypoint.sh
 
 # Expose port for nginx
 EXPOSE 80
 
-# Start nginx server, this will run nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
+# Run the entrypoint script
+ENTRYPOINT ["./entrypoint.sh"]

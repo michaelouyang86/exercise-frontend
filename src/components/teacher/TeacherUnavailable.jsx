@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import exerciseApiClient from '@/api/exerciseApiClient';
+import { getExerciseApiClient } from '@/api/exerciseApiClient';
 import styles from './css/TeacherUnavailable.module.css';
 
 function TeacherUnavailable() {
   const navigate = useNavigate();
+  const exerciseApiClient = getExerciseApiClient();
   const [unavailableDates, setUnavailableDates] = useState([]);
   const [unavailableDate, setUnavailableDate] = useState(null);
 

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import exerciseApiClient from '@/api/exerciseApiClient';
+import { getExerciseApiClient } from '@/api/exerciseApiClient';
 import styles from './css/StudentPointRecords.module.css';
 
 function StudentPointRecord() {
   const navigate = useNavigate();
+  const exerciseApiClient = getExerciseApiClient();
   const [currentPoints, setCurrentPoints] = useState(null);
   const [pointsRecords, setPointsRecords] = useState([]);
 

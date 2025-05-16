@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import WorkingHoursPicker from '@/components/common/WorkingHoursPicker';
-import exerciseApiClient from '@/api/exerciseApiClient';
+import { getExerciseApiClient } from '@/api/exerciseApiClient';
 import styles from './css/TeacherExceptionAvailability.module.css';
 
 function TeacherExceptionAvailability() {
   const navigate = useNavigate();
+  const exerciseApiClient = getExerciseApiClient();
   const [exceptionAvailabilities, setExceptionAvailabilities] = useState([]);
   const [exceptionDate, setExceptionDate] = useState(null);
   const [workingTime, setWorkingTime] = useState({

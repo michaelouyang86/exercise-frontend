@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { format, addDays } from 'date-fns';
 
-import exerciseApiClient from '@/api/exerciseApiClient';
+import { getExerciseApiClient } from '@/api/exerciseApiClient';
 import styles from './css/TeacherClassUpcoming.module.css';
 
 function TeacherClassUpcoming() {
   const navigate = useNavigate();
+  const exerciseApiClient = getExerciseApiClient();
   // For today classes
   const [todayClasses, setTodayClasses] = useState([]);
   // For furture classes

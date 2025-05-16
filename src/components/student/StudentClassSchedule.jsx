@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getISOWeek } from 'date-fns';
 
-import exerciseApiClient from '@/api/exerciseApiClient';
+import { getExerciseApiClient } from '@/api/exerciseApiClient';
 import styles from './css/StudentClassSchedule.module.css';
 
 function StudentClassSchedule() {
   const navigate = useNavigate();
+  const exerciseApiClient = getExerciseApiClient();
   const [teachers, setTeachers] = useState([]);
   const [selectedIsoWeek, setSelectedIsoWeek] = useState(null);
   const [selectedTeacherId, setSelectedTeacherId] = useState(null);
