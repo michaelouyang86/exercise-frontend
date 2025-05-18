@@ -3,12 +3,12 @@
 
 # To run the Docker container, use the following command:
 # Replace ${EXERCISE_API_URL} with the actual backend URL
-# docker run -p 80:80 -e EXERCISE_API_URL="${EXERCISE_API_URL}" exercise-frontend:latest
+# docker run -d -p 80:80 -e EXERCISE_API_URL="${EXERCISE_API_URL}" exercise-frontend:latest
 
 # 1. Build the app
 
 # Use node as the base image for building the app
-FROM node:slim AS builder
+FROM node:alpine AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -33,6 +33,9 @@ WORKDIR /app
 
 # Copy the built app from the builder stage to the nginx directory
 COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Copy custom nginx configuration
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the custom entrypoint script
 COPY entrypoint.sh .

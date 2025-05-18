@@ -9,7 +9,7 @@ function TeacherExceptionAvailability() {
   const navigate = useNavigate();
   const exerciseApiClient = getExerciseApiClient();
   const [exceptionAvailabilities, setExceptionAvailabilities] = useState([]);
-  const [exceptionDate, setExceptionDate] = useState(null);
+  const [exceptionDate, setExceptionDate] = useState('');
   const [workingTime, setWorkingTime] = useState({
     startHour: '',
     startMinute: '',

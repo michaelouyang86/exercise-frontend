@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { format, startOfMonth, subDays } from 'date-fns';
+import { format, startOfMonth, subMonths, subDays } from 'date-fns';
 
 import { getExerciseApiClient } from '@/api/exerciseApiClient';
 import styles from './css/TeacherClassPast.module.css';
@@ -9,14 +9,14 @@ function TeacherClassPast() {
   const navigate = useNavigate();
   const exerciseApiClient = getExerciseApiClient();
   // For past classes
-  const [pastStartDate, setPastStartDate] = useState(null);
-  const [pastEndDate, setPastEndDate] = useState(null);
+  const [pastStartDate, setPastStartDate] = useState('');
+  const [pastEndDate, setPastEndDate] = useState('');
   const [pastClasses, setPastClasses] = useState([]);
 
   useEffect(() => {
     const today = new Date();
-    // Set default start date to the first day of the current month
-    const startDate = format(startOfMonth(today), 'yyyy-MM-dd');
+    // Set default start date to the first day of the last month
+    const startDate = format(startOfMonth(subMonths(today, 1)), 'yyyy-MM-dd');
     // Set default end date to yesterday
     const endDate = format(subDays(today, 1), 'yyyy-MM-dd');
     
@@ -59,7 +59,7 @@ function TeacherClassPast() {
       </div><hr />
 
       <div className={styles.dateFilterContainer}>
-        <label className={styles.dateFilterLabel}>
+        <label>
           起始日期:
           <input
             type="date"
@@ -67,7 +67,7 @@ function TeacherClassPast() {
             onChange={handlePastStartDateChange}
             className={styles.dateInput} />
         </label>
-        <label className={styles.dateFilterLabel}>
+        <label>
           結束日期:
           <input
             type="date"

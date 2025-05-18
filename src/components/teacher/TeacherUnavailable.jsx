@@ -8,7 +8,7 @@ function TeacherUnavailable() {
   const navigate = useNavigate();
   const exerciseApiClient = getExerciseApiClient();
   const [unavailableDates, setUnavailableDates] = useState([]);
-  const [unavailableDate, setUnavailableDate] = useState(null);
+  const [unavailableDate, setUnavailableDate] = useState('');
 
   useEffect(() => {
     fetchAndSetUnavailableDates();

@@ -9,7 +9,7 @@ function StudentClassSchedule() {
   const navigate = useNavigate();
   const exerciseApiClient = getExerciseApiClient();
   const [teachers, setTeachers] = useState([]);
-  const [selectedIsoWeek, setSelectedIsoWeek] = useState(null);
+  const [selectedIsoWeek, setSelectedIsoWeek] = useState('');
   const [selectedTeacherId, setSelectedTeacherId] = useState(null);
   const [teacherAvailabilities, setTeacherAvailabilities] = useState([]);
   const [selectedClassDate, setSelectedClassDate] = useState(null);
@@ -44,6 +44,7 @@ function StudentClassSchedule() {
   const handleTeacherChange = (event) => {
     setSelectedClassDate(null);
     setSelectedStartTime(null);
+    setTeacherAvailabilities([]);
 
     const teacherId = event.target.value;
     setSelectedTeacherId(teacherId);
@@ -53,6 +54,7 @@ function StudentClassSchedule() {
   const handleIsoWeekChange = (event) => {
     setSelectedClassDate(null);
     setSelectedStartTime(null);
+    setTeacherAvailabilities([]);
 
     const isoWeek = event.target.value;
     setSelectedIsoWeek(isoWeek);

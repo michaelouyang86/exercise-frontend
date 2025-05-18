@@ -11,8 +11,8 @@ function StudentClassManagement() {
   // For upcoming classes
   const [upcomingClasses, setUpcomingClasses] = useState([]);
   // For past classes
-  const [pastStartDate, setPastStartDate] = useState(null);
-  const [pastEndDate, setPastEndDate] = useState(null);
+  const [pastStartDate, setPastStartDate] = useState('');
+  const [pastEndDate, setPastEndDate] = useState('');
   const [pastClasses, setPastClasses] = useState([]);
 
   useEffect(() => {
@@ -122,7 +122,7 @@ function StudentClassManagement() {
 
       <h5 className="text-orange">完課紀錄</h5>
       <div className={styles.dateFilterContainer}>
-        <label className={styles.dateFilterLabel}>
+        <label>
           起始日期:
           <input
             type="date"
@@ -130,7 +130,7 @@ function StudentClassManagement() {
             onChange={handlePastStartDateChange}
             className={styles.dateInput} />
         </label>
-        <label className={styles.dateFilterLabel}>
+        <label>
           結束日期:
           <input
             type="date"

@@ -1,8 +1,17 @@
 .timePickerRow {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.5rem;
+}
+
+.timeSelect {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 60px;
 }
 
 .colon {

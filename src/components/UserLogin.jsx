@@ -12,7 +12,7 @@ function UserLogin() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    setMessage('');
+    setMessage('登入中...');
     
     // Clear any existing role and token in localStorage
     localStorage.removeItem('role');

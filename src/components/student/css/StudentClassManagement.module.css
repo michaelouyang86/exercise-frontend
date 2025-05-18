@@ -21,18 +21,13 @@
 
 .dateFilterContainer {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   margin-bottom: 1rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.dateFilterLabel {
-  display: flex;
-  flex-direction: column;
 }
 
 .dateInput {
+  margin-left: 10px;
   margin-top: 4px;
   padding: 5px 10px;
   border: 1px solid #ccc;

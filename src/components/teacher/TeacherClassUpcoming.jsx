@@ -11,8 +11,8 @@ function TeacherClassUpcoming() {
   // For today classes
   const [todayClasses, setTodayClasses] = useState([]);
   // For furture classes
-  const [futureStartDate, setFutureStartDate] = useState(null);
-  const [futureEndDate, setFutureEndDate] = useState(null);
+  const [futureStartDate, setFutureStartDate] = useState('');
+  const [futureEndDate, setFutureEndDate] = useState('');
   const [futureClasses, setFutureClasses] = useState([]);
 
   useEffect(() => {
@@ -134,7 +134,7 @@ function TeacherClassUpcoming() {
 
       <h5>未來課程</h5>
       <div className={styles.dateFilterContainer}>
-        <label className={styles.dateFilterLabel}>
+        <label>
           起始日期:
           <input
             type="date"
@@ -142,7 +142,7 @@ function TeacherClassUpcoming() {
             onChange={handleFutureStartDateChange}
             className={styles.dateInput} />
         </label>
-        <label className={styles.dateFilterLabel}>
+        <label>
           結束日期:
           <input
             type="date"

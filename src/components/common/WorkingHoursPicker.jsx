@@ -45,6 +45,7 @@ function WorkingHoursPicker({ workingTime, setWorkingTime }) {
       <div className={styles.timePickerRow}>
         <label>上班時間:</label>
         <select
+          className={styles.timeSelect}
           value={workingTime.startHour}
           onChange={handleWorkingTimeStartHourChange}
         >
@@ -57,6 +58,7 @@ function WorkingHoursPicker({ workingTime, setWorkingTime }) {
         </select>
         <span className={styles.colon}>:</span>
         <select
+          className={styles.timeSelect}
           value={workingTime.startMinute}
           onChange={handleWorkingTimeStartMinuteChange}
         >
@@ -70,6 +72,7 @@ function WorkingHoursPicker({ workingTime, setWorkingTime }) {
       <div className={styles.timePickerRow}>
         <label>下班時間:</label>
         <select
+          className={styles.timeSelect}
           value={workingTime.endHour}
           onChange={handleWorkingTimeEndHourChange}
         >
@@ -82,6 +85,7 @@ function WorkingHoursPicker({ workingTime, setWorkingTime }) {
         </select>
         <span className={styles.colon}>:</span>
         <select
+          className={styles.timeSelect}
           value={workingTime.endMinute}
           disabled
         >
